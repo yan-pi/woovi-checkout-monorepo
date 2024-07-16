@@ -22,9 +22,6 @@ services:
     restart: always
     ports:
       - 3001:3001
-    environment:
-      DATABASE_URL: postgres://user:password@postgres:5432/mydatabase
-      REDIS_URL: redis://redis:6379
     networks:
       - app_network
     depends_on:
@@ -32,20 +29,26 @@ services:
       - redis
 
   postgres:
-    image: postgres:13
+    image: bitnami/postgresql:13
     container_name: postgres
+    restart: always
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: your_database_name
+    volumes:
+      - postgres_data:/bitnami/postgresql
     ports:
       - 5432:5432
     networks:
       - app_network
 
   redis:
-    image: redis:6-alpine
+    image: redis:alpine
     container_name: redis
+    restart: always
+    volumes:
+      - redis_data:/data
     ports:
       - 6379:6379
     networks:
@@ -54,3 +57,7 @@ services:
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
