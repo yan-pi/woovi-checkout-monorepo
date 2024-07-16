@@ -218,6 +218,12 @@ importers:
         specifier: ^5.3.3
         version: 5.5.3
 
+  packages/zod-schemas:
+    dependencies:
+      typescript:
+        specifier: ^5.3.3
+        version: 5.5.3
+
 packages:
 
   /@ampproject/remapping@2.3.0:
