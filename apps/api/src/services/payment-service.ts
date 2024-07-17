@@ -17,7 +17,7 @@ export class PaymentService implements IPaymentService {
     let finalInstallments: string[] = [];
     let totalAmount = amount;
 
-    if (paymentMethod === 'installments' && installments && installments > 2) {
+    if (paymentMethod === 'installments' && installments && installments > 1) {
       finalInstallments = calculateInstallments(amount, installments);
       totalAmount = finalInstallments.reduce((acc, val) => acc + parseFloat(val), 0);
     }
