@@ -8,9 +8,17 @@
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "prepare": "husky"
   },
-  "dependencies": {},
+  "dependencies": {
+    "husky": "^9.0.11"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "turbo run lint && turbo run format"
+    }
+  },
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.0.6"
